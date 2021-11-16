@@ -1,20 +1,25 @@
 <template>
   <div>
     <h1>Vue Todo with Typescript</h1>
-    <TodoInput :item="todoText" />
+    <TodoInput :item="todoText" @input="updateTodoText" />
   </div>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import TodoInput from "./components/TodoInput.vue";
+import Vue from 'vue';
+import TodoInput from './components/TodoInput.vue';
 
 export default Vue.extend({
-  components: { TodoInput },
+  components: {TodoInput},
   data() {
     return {
-      todoText: "",
+      todoText: '',
     };
+  },
+  methods: {
+    updateTodoText(value: any) {
+      this.todoText = value;
+    },
   },
 });
 </script>
