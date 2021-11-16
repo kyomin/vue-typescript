@@ -1,7 +1,7 @@
 <template>
   <div>
     <label for="todo-input"></label>
-    <input id="todo-input" type="text" />
+    <input id="todo-input" type="text" :value="item" />
     <button @click="addTodo" type="button">추가</button>
   </div>
 </template>
@@ -10,6 +10,7 @@
 import Vue from "vue";
 
 export default Vue.extend({
+  props: ["item"],
   methods: {
     addTodo() {
       console.log("addTodo");
@@ -18,5 +19,4 @@ export default Vue.extend({
 });
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
