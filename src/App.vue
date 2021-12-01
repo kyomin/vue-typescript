@@ -1,20 +1,26 @@
 <template>
   <div>
-    <h1>Vue Todo with Typescript</h1>
-    <!--
-      input 컴포넌트를 따로 만들게 되면, 재활용성이 높아지면서
-      사용되어지는 여러 곳에 같은 스타일과 동작을 보장할 수 있다.
-    -->
-    <TodoInput :item="todoText" @input="updateTodoText" @add="addTodoItem" />
+    <header>
+      <h1>Vue Todo with Typescript</h1>
+    </header>
+    <main>
+      <TodoInput :item="todoText" @input="updateTodoText" @add="addTodoItem" />
+    </main>
+    <div>
+      <ul>
+        <TodoListItem />
+      </ul>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
 import TodoInput from './components/TodoInput.vue';
+import TodoListItem from './components/TodoListItem.vue';
 
 export default Vue.extend({
-  components: {TodoInput},
+  components: {TodoInput, TodoListItem},
   data() {
     return {
       todoText: '',
