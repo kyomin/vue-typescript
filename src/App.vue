@@ -63,7 +63,8 @@ export default Vue.extend({
       this.todoItems = storage.fetch();
     },
     removeTodoItem(index: number) {
-      console.log('removeTodoItem', index);
+      this.todoItems.splice(index, 1);
+      storage.save(this.todoItems);
     },
   },
   created() {
