@@ -13,6 +13,7 @@
           :key="index"
           :index="index"
           :todoItem="todoItem"
+          @toggle="toggleTodoItemComplete"
           @remove="removeTodoItem"
         />
       </ul>
@@ -73,6 +74,13 @@ export default Vue.extend({
     },
     removeTodoItem(index: number) {
       this.todoItems.splice(index, 1);
+      storage.save(this.todoItems);
+    },
+    toggleTodoItemComplete(todoItem: Todo, index: number) {
+      this.todoItems.splice(index, 1, {
+        ...todoItem, // 기존 속성 값들을 뿌려주고
+        done: !todoItem.done, // 바뀔 속성 부분만 명시해준다
+      });
       storage.save(this.todoItems);
     },
   },
