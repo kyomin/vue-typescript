@@ -28,11 +28,11 @@ import TodoListItem from './components/TodoListItem.vue';
 
 const STORAGE_KEY = 'vue-todo-ts-v1';
 const storage = {
-  save(todoItems: any[]) {
+  save(todoItems: Todo[]) {
     const parsed = JSON.stringify(todoItems);
     localStorage.setItem(STORAGE_KEY, parsed);
   },
-  fetch() {
+  fetch(): Todo[] {
     const todoItems = localStorage.getItem(STORAGE_KEY) || '[]';
     const result = JSON.parse(todoItems);
     return result;
@@ -70,6 +70,11 @@ export default Vue.extend({
       this.todoText = '';
     },
     fetchTodoItems() {
+      /*
+        fetch의 반환 값을 명시하게 되면,
+        array function 인자에 타입을 명시하지 않아도
+        자동으로 추론이 된다.
+      */
       this.todoItems = storage.fetch().sort((a, b) => {
         if (a.title < b.title) {
           return -1;
